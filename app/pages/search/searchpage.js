@@ -1,109 +1,142 @@
-import React, { Component } from 'react';
-import { Text, View,TouchableWithoutFeedback,Dimensions,TextInput,Alert,FlatList,StyleSheet,Image} from 'react-native';
+/* eslint-disable no-undef */
+import React, {Component} from 'react';
+import {
+    Text,
+    View,
+    TouchableWithoutFeedback,
+    Dimensions,
+    TextInput,
+    Alert,
+    FlatList,
+    StyleSheet,
+    Image,
+} from 'react-native';
 import Indexheader from './../components/indexheader';
-import Icon from "react-native-vector-icons/AntDesign";
+import Icon from 'react-native-vector-icons/AntDesign';
 import Global from '../Global';
 
-const { width } = Dimensions.get('window')//获取当前屏幕宽度
+const {width} = Dimensions.get('window'); //获取当前屏幕宽度
 
 export default class search extends Component {
-
     static navigationOptions = {
-        header:null
+        header: null,
     };
 
-  constructor(props){
-    super(props);
-    this.state={
-        data:'',
-        content:null,
-        car:[]
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: '',
+            content: null,
+            productlist: [],
+        };
+        // fetch(gUrl.httpurl + '/getcarlist')
+        //             .then((response) => {
+        //                 this.res = JSON.parse(response._bodyText);
+        //                 this.setState({'content':this.res});
+        //             })
+        //             .catch((error) => {
+        //               console.log(error);
+        //             });
     }
-    fetch(gUrl.httpurl+'/getcarlist')
-                .then((response) => {
-                    this.res=JSON.parse(response._bodyText);
-                    this.setState({'content':this.res})
-                })
-                .catch((error) => {
-                  console.log(error)
-                })
 
-  }
-
-  search(){
-    this.car=[];
-    for(var i=0;i<this.state.content.length;i++){
-        //如果字符串中不包含目标字符会返回-1
-        if(this.state.content[i].model.indexOf(this.state.data)>=0){
-            this.car.push(this.state.content[i]);
-        }else{
-
+    search() {
+        fetch(gUrl.httpurl + '/product/searchProduct?keyword=' + this.state.data)
+            .then((responses) => responses.json())
+            .then((res) => {
+                this.setState({productlist: JSON.parse(JSON.stringify(res))});
+                //console.log(this.state.productlist);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        if (this.state.productlist === []) {
+            Alert.alert('没有搜索到相关记录');
         }
     }
-    this.setState({'car':this.car})
-    if(this.state.car==[]){
-        Alert.alert('没有搜索到相关记录')
-    }
-    console.log(this.car);
-  }
-  
-  
-  render() {
-    return (
-      <View style={{flex:1}}>
-      <Indexheader/>
-      <View style={{ height: 50, backgroundColor: 'white', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
-                       
-                        <TouchableWithoutFeedback  onPress={() => this.props.navigation.navigate('Search')}>
-                        <View style={{ height: 35, width: (width / 4) * 3, backgroundColor: '#f1f1f1', borderRadius: 15, justifyContent: 'center',alignItems:'center' }}>
+
+    render() {
+        return (
+            <View style={{flex: 1}}>
+                <Indexheader />
+                <View
+                    style={{
+                        height: 50,
+                        backgroundColor: 'white',
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}>
+                    <TouchableWithoutFeedback>
+                        <View
+                            style={{
+                                height: 35,
+                                width: (width / 4) * 3,
+                                backgroundColor: '#f1f1f1',
+                                borderRadius: 15,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}>
                             <TextInput
-                                style={{height: 35, width: (width / 4) * 3, backgroundColor: '#f1f1f1', borderRadius: 15, justifyContent: 'center',alignItems:'center'}} 
+                                style={{
+                                    height: 35,
+                                    width: (width / 4) * 3,
+                                    backgroundColor: '#f1f1f1',
+                                    borderRadius: 15,
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
                                 placeholder={'请输入需要搜索的内容'}
                                 onChangeText={(data) => this.setState({data})}
                             />
                         </View>
+                    </TouchableWithoutFeedback>
+                    <View style={{justifyContent: 'flex-end', marginStart: 10}}>
+                        <TouchableWithoutFeedback onPress={() => this.search()}>
+                            <Text>
+                                <Icon name="search1" size={15} color="#000" />
+                                搜索
+                            </Text>
                         </TouchableWithoutFeedback>
-                        <View
-                            style={{ justifyContent: 'flex-end', marginStart: 10 }}
-                        ><TouchableWithoutFeedback  onPress={() => this.search()}><Text><Icon name='search1' size={15} color="#000" />搜索</Text></TouchableWithoutFeedback></View>
                     </View>
-
-                    <FlatList
-                        data={this.state.car}
-                        ListEmptyComponent={(
-                            <View style={{justifyContent:'center',alignItems:'center',marginTop:200}}><Text style={{fontSize:30}}>空空如也</Text></View>
-
-                    
-                            
-                        )}
-                        renderItem={({ item }) =>
-                            <TouchableWithoutFeedback
-                                onPress={() => this.props.navigation.navigate('CarPage',{item})}
-                            >
-                                <View style={{ backgroundColor: 'white' }}>
-                                    <View style={styles.listtext}>
-                                        <View style={{ width: 2*width / 5, justifyContent: 'center', alignItems: 'center', }}>
-                                            <Image resizeMode='stretch' style={styles.listimage}
-                                                source={require('./../../../static/img/car.jpg')} />
-                                        </View>
-                                        <View style={styles.listbody}>
-                                            <View style={{ width: 3*width / 5, marginStart: 20 }}>
-                                                <Text style={{ color: 'black', fontSize: 19 }}>{item.brand}</Text>
-                                                <Text style={{ color: 'black', fontSize: 19 }}>{item.model}</Text>
-                                                <Text>厂商指导价{item.guideprice}万</Text>
-                                                <Text style={{ color: '#FF2d16' }}>首付0元 月供6000元</Text>
-                                            </View>
-
+                </View>
+                <FlatList
+                    data={this.state.productlist}
+                    ListEmptyComponent={
+                        <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 200}}>
+                            <Text style={{fontSize: 30}}>空空如也</Text>
+                        </View>
+                    }
+                    renderItem={({item}) => (
+                        <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('CarPage', {item})}>
+                            <View style={{backgroundColor: 'white'}}>
+                                <View style={styles.listtext}>
+                                    <View
+                                        style={{
+                                            width: (2 * width) / 5,
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                        }}>
+                                        <Image
+                                            resizeMode="stretch"
+                                            style={styles.listimage}
+                                            source={require('./../../../static/img/car.jpg')}
+                                        />
+                                    </View>
+                                    <View style={styles.listbody}>
+                                        <View style={{width: (3 * width) / 5, marginStart: 20}}>
+                                            <Text style={{color: 'black', fontSize: 19}}>{item.productname}</Text>
+                                            <Text style={{color: 'black', fontSize: 19}}>{item.kind}</Text>
+                                            <Text>厂商指导价{item.guideprice}元</Text>
                                         </View>
                                     </View>
                                 </View>
-                            </TouchableWithoutFeedback>
-                        } />
-
-        
-      </View>
-    );
-  }
+                            </View>
+                        </TouchableWithoutFeedback>
+                    )}
+                />
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -115,15 +148,12 @@ const styles = StyleSheet.create({
         height: 45,
         backgroundColor: 'white',
         flexDirection: 'row',
-        justifyContent: 'center'
-
+        justifyContent: 'center',
     },
     center2: {
         backgroundColor: 'white',
         alignItems: 'center',
-        marginTop: -5
-
-
+        marginTop: -5,
     },
     logo: {
         width: 45,
@@ -135,7 +165,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: 'black',
         marginTop: 10,
-        marginStart: 5
+        marginStart: 5,
     },
     text2: {
         fontSize: 11,
@@ -153,11 +183,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     wrapper: {
-        height: 50
+        height: 50,
     },
     slide: {
         justifyContent: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     image: {
         width,
@@ -184,7 +214,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-
     },
     zerobox: {
         justifyContent: 'center',
@@ -207,6 +236,6 @@ const styles = StyleSheet.create({
     listimage: {
         height: 120,
         width: width / 3,
-        resizeMode: 'contain'
-    }
+        resizeMode: 'contain',
+    },
 });

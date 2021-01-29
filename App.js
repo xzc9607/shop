@@ -18,6 +18,9 @@ import Loginpage from './app/pages/login/loginpage';
 import Registerpage from './app/pages/login/register/registerpage';
 import Forgetpasswordpage from './app/pages/login/forgetpassword/forgetpasswordpage';
 
+//搜索
+import Searchpage from './app/pages/search/searchpage';
+
 import MyOrder from './app/pages/mine/childrenpage/MyOrder/MyOrderpage';
 import MyFocusPro from './app/pages/mine/childrenpage/MyFocusPro/MyFocusPropage';
 import MyFocus from './app/pages/mine/childrenpage/MyFocus/MyFocuspage';
@@ -88,6 +91,9 @@ export const TabNav = createBottomTabNavigator(
 
 const RootStack = createStackNavigator(
     {
+        Searchpage: {
+            screen: Searchpage,
+        },
         Loginpage: {
             screen: Loginpage,
         },

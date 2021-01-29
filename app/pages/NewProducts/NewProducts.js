@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import React, {Component} from 'react';
 import {Dimensions, FlatList, Image, ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Indexheader from '../components/indexheader';
 import Swipercomponent from '../components/swipercomponent';
+import Global from '../Global';
 
 const {width} = Dimensions.get('window'); //获取当前屏幕宽度
 
@@ -20,8 +23,18 @@ export default class NewProducts extends Component {
         this.state = {
             text: '个性SUV',
             isOpen: false,
-            carlist: [],
+            productlist: [],
         };
+
+        fetch(gUrl.httpurl + '/product/getProductlist')
+            .then((responses) => responses.json())
+            .then((res) => {
+                this.setState({productlist: JSON.parse(JSON.stringify(res))});
+                //console.log(this.state.productlist);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     render() {
@@ -51,7 +64,7 @@ export default class NewProducts extends Component {
                             </Text>
                         </TouchableWithoutFeedback>
                     </View>
-                    <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Search')}>
+                    <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Searchpage')}>
                         <View
                             style={{
                                 height: 35,
@@ -81,7 +94,7 @@ export default class NewProducts extends Component {
                     <View style={{marginTop: 15, backgroundColor: 'white'}} />
 
                     <FlatList
-                        data={this.state.carlist}
+                        data={this.state.productlist}
                         renderItem={({item}) => (
                             <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('CarPage', {item})}>
                                 <View style={{backgroundColor: 'white'}}>
@@ -100,10 +113,9 @@ export default class NewProducts extends Component {
                                         </View>
                                         <View style={styles.listbody}>
                                             <View style={{width: (3 * width) / 5, marginStart: 20}}>
-                                                <Text style={{color: 'black', fontSize: 19}}>{item.brand}</Text>
-                                                <Text style={{color: 'black', fontSize: 19}}>{item.model}</Text>
-                                                <Text>厂商指导价{item.guideprice}万</Text>
-                                                <Text style={{color: '#FF2d16'}}>首付0元 月供6000元</Text>
+                                                <Text style={{color: 'black', fontSize: 19}}>{item.productname}</Text>
+                                                <Text style={{color: 'black', fontSize: 19}}>{item.kind}</Text>
+                                                <Text>厂商指导价{item.price}元</Text>
                                             </View>
                                         </View>
                                     </View>
