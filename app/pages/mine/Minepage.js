@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Dimensions, FlatList, Image, StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
-//import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Minepageheader from '../components/minepageheader';
 // eslint-disable-next-line no-unused-vars
@@ -43,54 +43,65 @@ export default class Minepage extends Component {
                 {key: '设置', function: 'MySetting'},
             ],
             username: '',
-            userid: null,
+            uid: null,
             orderlength: null,
             focuslength: null,
             feedbacklength: null,
         };
         //关注数获取
-        // AsyncStorage.getItem('user', function (error, result) {
-        //     if (error) {
-        //         // eslint-disable-next-line no-alert
-        //         alert('读取失败');
-        //     } else {
-        //     }
-        // }).then((result) => {
-        //     this.setState({username: result});
-        //     fetch(gUrl.httpurl + '/getuserlist')
-        //         .then((response) => {
-        //             this.res = JSON.parse(response._bodyText);
-        //             for (var i = 0; i < this.res.length; i++) {
-        //                 if (this.res[i].username == this.state.username) {
-        //                     this.setState({userid: this.res[i].id});
-        //                 }
-        //             }
-        //             fetch(gUrl.httpurl + '/getorderlistlength?userid=' + this.state.userid)
-        //                 .then((response) => {
-        //                     this.setState({orderlength: response._bodyText});
-        //                     fetch(gUrl.httpurl + '/getfocuslistlength?userid=' + this.state.userid)
-        //                         .then((response) => {
-        //                             this.setState({focuslength: response._bodyText});
-        //                             fetch(gUrl.httpurl + '/getfeedbacklistlength?userid=' + this.state.userid)
-        //                                 .then((response) => {
-        //                                     this.setState({feedbacklength: response._bodyText});
-        //                                 })
-        //                                 .catch((error) => {
-        //                                     console.log(error);
-        //                                 });
-        //                         })
-        //                         .catch((error) => {
-        //                             console.log(error);
-        //                         });
-        //                 })
-        //                 .catch((error) => {
-        //                     console.log(error);
-        //                 });
-        //         })
-        //         .catch((error) => {
-        //             console.log(error);
-        //         });
-        // });
+        AsyncStorage.getItem('user', function (error, result) {
+            if (error) {
+                // eslint-disable-next-line no-alert
+                alert('读取失败');
+            } else {
+            }
+        }).then((result) => {
+            this.setState({username: result});
+            // eslint-disable-next-line no-undef
+            fetch(gUrl.httpurl + '/users')
+                .then((responses) => responses.json())
+                .then((res) => {
+                    var temp = JSON.parse(JSON.stringify(res.list));
+                    for (var i = 0; i < temp.length; i++) {
+                        if (temp[i].username === this.state.username) {
+                            this.setState({uid: temp[i].uid});
+                        }
+                    }
+                    // eslint-disable-next-line no-undef
+                    fetch(gUrl.httpurl + '/users/getorderlistlength?uid=' + this.state.uid)
+                        .then((responses) => responses.json())
+                        .then((res) => {
+                            this.setState({orderlength: res[0].res});
+                            // eslint-disable-next-line no-undef
+                            fetch(gUrl.httpurl + '/users/getfocuslistlength?uid=' + this.state.uid)
+                                .then((responses) => responses.json())
+                                .then((res) => {
+                                    this.setState({focuslength: res[0].res});
+                                    // eslint-disable-next-line no-undef
+                                    fetch(gUrl.httpurl + '/users/getfeedbacklistlength?uid=' + this.state.uid)
+                                        .then((responses) => responses.json())
+                                        .then((res) => {
+                                            this.setState({feedbacklength: res[0].res});
+                                            //console.log(this.state.uid);
+                                            //console.log(this.state.focuslength);
+                                            //console.log(this.state.orderlength);
+                                        })
+                                        .catch((error) => {
+                                            console.log(error);
+                                        });
+                                })
+                                .catch((error) => {
+                                    console.log(error);
+                                });
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        });
     }
 
     render() {
@@ -122,11 +133,11 @@ export default class Minepage extends Component {
                 <View style={styles.attentionview}>
                     <View style={styles.attentionviewinside}>
                         <Text>{this.state.orderlength}</Text>
-                        <Text>车辆订单</Text>
+                        <Text>商品订单</Text>
                     </View>
                     <View style={styles.attentionviewinside}>
                         <Text>{this.state.focuslength}</Text>
-                        <Text>关注车辆</Text>
+                        <Text>关注商品</Text>
                     </View>
                     <View style={styles.attentionviewinside}>
                         <Text>{this.state.feedbacklength}</Text>

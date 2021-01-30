@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {AsyncStorage, Dimensions, Image, Text, View} from 'react-native';
+import {Dimensions, Image, Text, View} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Minepageheader from '../../../components/minepageheader';
 import Global from '../../../Global';
@@ -11,26 +12,29 @@ export default class UserInformation extends Component {
 
         this.state = {
             username: '',
-            number: '',
+            phone: '',
         };
 
-        // AsyncStorage.getItem('user', function (error, result) {
-        //     if (error) {
-        //         alert('读取失败');
-        //     } else {
-        //     }
-        // }).then((result) => {
-        //     this.setState({username: result});
-        //     console.log(this.state.username);
-        //     fetch(gUrl.httpurl + '/finduserbyname?username=' + this.state.username)
-        //         .then((response) => {
-        //             this.res = JSON.parse(response._bodyText);
-        //             this.setState({number: this.res[0].number});
-        //         })
-        //         .catch((error) => {
-        //             console.log(error);
-        //         });
-        // });
+        AsyncStorage.getItem('user', function (error, result) {
+            if (error) {
+                alert('读取失败');
+            } else {
+            }
+        }).then((result) => {
+            this.setState({username: result});
+            console.log(this.state.username);
+            // eslint-disable-next-line no-undef
+            fetch(gUrl.httpurl + '/users/getUserByname?username=' + this.state.username)
+                .then((responses) => responses.json())
+                .then((res) => {
+                    var temp = JSON.parse(JSON.stringify(res.list));
+                    //console.log(temp);
+                    this.setState({phone: temp[0].phone});
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        });
     }
 
     static navigationOptions = {
@@ -107,7 +111,7 @@ export default class UserInformation extends Component {
                         </View>
                         <View style={{width: ((width - 40) / 4) * 2, alignItems: 'center'}}>
                             <View>
-                                <Text>{this.state.number}</Text>
+                                <Text>{this.state.phone}</Text>
                             </View>
                         </View>
                         <View style={{width: (width - 40) / 4}}>

@@ -11,7 +11,7 @@ import {
     StyleSheet,
     Image,
 } from 'react-native';
-import Indexheader from './../components/indexheader';
+import Indexheader from '../components/indexheader';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Global from '../Global';
 
@@ -19,7 +19,7 @@ const {width} = Dimensions.get('window'); //获取当前屏幕宽度
 
 export default class search extends Component {
     static navigationOptions = {
-        header: null,
+        headerShown: false,
     };
 
     constructor(props) {
@@ -29,14 +29,6 @@ export default class search extends Component {
             content: null,
             productlist: [],
         };
-        // fetch(gUrl.httpurl + '/getcarlist')
-        //             .then((response) => {
-        //                 this.res = JSON.parse(response._bodyText);
-        //                 this.setState({'content':this.res});
-        //             })
-        //             .catch((error) => {
-        //               console.log(error);
-        //             });
     }
 
     search() {
@@ -44,14 +36,14 @@ export default class search extends Component {
             .then((responses) => responses.json())
             .then((res) => {
                 this.setState({productlist: JSON.parse(JSON.stringify(res))});
-                //console.log(this.state.productlist);
+                if (this.state.productlist.length === 0) {
+                    Alert.alert('没有搜索到相关记录');
+                }
+                //console.log(this.state.productlist.length);
             })
             .catch((error) => {
                 console.log(error);
             });
-        if (this.state.productlist === []) {
-            Alert.alert('没有搜索到相关记录');
-        }
     }
 
     render() {
@@ -126,7 +118,7 @@ export default class search extends Component {
                                         <View style={{width: (3 * width) / 5, marginStart: 20}}>
                                             <Text style={{color: 'black', fontSize: 19}}>{item.productname}</Text>
                                             <Text style={{color: 'black', fontSize: 19}}>{item.kind}</Text>
-                                            <Text>厂商指导价{item.guideprice}元</Text>
+                                            <Text>厂商指导价{item.price}元</Text>
                                         </View>
                                     </View>
                                 </View>

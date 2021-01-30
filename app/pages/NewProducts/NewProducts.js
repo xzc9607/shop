@@ -1,7 +1,17 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import React, {Component} from 'react';
-import {Dimensions, FlatList, Image, ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {
+    Dimensions,
+    FlatList,
+    Image,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableWithoutFeedback,
+    View,
+    Linking,
+} from 'react-native';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Indexheader from '../components/indexheader';
@@ -35,6 +45,9 @@ export default class NewProducts extends Component {
             .catch((error) => {
                 console.log(error);
             });
+    }
+    getnumber() {
+        Linking.openURL('tel:${05506562065}');
     }
 
     render() {
