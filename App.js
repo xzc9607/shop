@@ -19,7 +19,7 @@ import Registerpage from './app/pages/login/register/registerpage';
 import Forgetpasswordpage from './app/pages/login/forgetpassword/forgetpasswordpage';
 
 //搜索
-import Searchpage from './app/pages/search/searchpage';
+import Searchpage from './app/pages/Search/searchpage';
 
 import MyOrder from './app/pages/mine/childrenpage/MyOrder/MyOrderpage';
 import MyFocusPro from './app/pages/mine/childrenpage/MyFocusPro/MyFocusPropage';

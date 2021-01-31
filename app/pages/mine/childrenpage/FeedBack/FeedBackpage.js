@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Alert, Button, Dimensions, Text, TextInput, View} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Minepageheader from '../../../components/minepageheader';
 import Global from '../../../Global';
 
@@ -10,34 +11,34 @@ export default class FeedBack extends Component {
         super(props);
         this.state = {
             username: '',
-            userid: null,
-            number: null,
+            uid: null,
+            phone: null,
             title: '',
             content: '',
         };
 
-        // AsyncStorage.getItem('user', function (error, result) {
-        //     if (error) {
-        //         alert('读取失败');
-        //     } else {
-        //     }
-        // }).then((result) => {
-        //     this.setState({username: result});
-        //     fetch(gUrl.httpurl + '/getuserlist')
-        //         .then((response) => {
-        //             this.res = JSON.parse(response._bodyText);
-        //             for (var i = 0; i < this.res.length; i++) {
-        //                 if (this.res[i].username == this.state.username) {
-        //                     this.setState({userid: this.res[i].id});;
-        //                 }
-        //             }
-        //             console.log(this.state);
-
-        //               })
-        //         .catch((error) => {
-        //             console.log(error);;
-        //         });
-        // });
+        AsyncStorage.getItem('user', function (error, result) {
+            if (error) {
+                Alert.alert('读取失败');
+            } else {
+            }
+        }).then((result) => {
+            this.setState({username: result});
+            // eslint-disable-next-line no-undef
+            fetch(gUrl.httpurl + '/users')
+                .then((responses) => responses.json())
+                .then((res) => {
+                    var temp = JSON.parse(JSON.stringify(res.list));
+                    for (var i = 0; i < temp.length; i++) {
+                        if (temp[i].username === this.state.username) {
+                            this.setState({uid: temp[i].uid});
+                        }
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        });
     }
 
     static navigationOptions = {

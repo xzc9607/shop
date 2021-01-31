@@ -44,6 +44,7 @@ export default class Minepage extends Component {
             ],
             username: '',
             uid: null,
+            profileaddress: '',
             orderlength: null,
             focuslength: null,
             feedbacklength: null,
@@ -65,21 +66,25 @@ export default class Minepage extends Component {
                     for (var i = 0; i < temp.length; i++) {
                         if (temp[i].username === this.state.username) {
                             this.setState({uid: temp[i].uid});
+                            this.setState({profileaddress: temp[i].profileaddress});
                         }
                     }
                     // eslint-disable-next-line no-undef
                     fetch(gUrl.httpurl + '/users/getorderlistlength?uid=' + this.state.uid)
                         .then((responses) => responses.json())
+                        // eslint-disable-next-line no-shadow
                         .then((res) => {
                             this.setState({orderlength: res[0].res});
                             // eslint-disable-next-line no-undef
                             fetch(gUrl.httpurl + '/users/getfocuslistlength?uid=' + this.state.uid)
                                 .then((responses) => responses.json())
+                                // eslint-disable-next-line no-shadow
                                 .then((res) => {
                                     this.setState({focuslength: res[0].res});
                                     // eslint-disable-next-line no-undef
                                     fetch(gUrl.httpurl + '/users/getfeedbacklistlength?uid=' + this.state.uid)
                                         .then((responses) => responses.json())
+                                        // eslint-disable-next-line no-shadow
                                         .then((res) => {
                                             this.setState({feedbacklength: res[0].res});
                                             //console.log(this.state.uid);
@@ -115,20 +120,17 @@ export default class Minepage extends Component {
                             <Image
                                 roundAsCircle={true}
                                 style={styles.profilephoto}
-                                source={require('./../../../static/img/2.png')}
-                                // source={{
-                                //     uri:
-                                //         'https://mlshopimg.oss-cn-hangzhou.aliyuncs.com/' +
-                                //         this.state.username +
-                                //         '.png',
-                                // }}
+                                //source={require('./../../../static/img/2.png')}
+                                source={{
+                                    uri: this.state.profileaddress,
+                                }}
                             />
                         </TouchableWithoutFeedback>
                     </View>
                 </View>
 
                 <View style={styles.nameview}>
-                    <Text style={{fontSize: 16, color: 'black'}}>{this.state.username}</Text>
+                    <Text style={{fontSize: 18, color: 'black'}}>{this.state.username}</Text>
                 </View>
                 <View style={styles.attentionview}>
                     <View style={styles.attentionviewinside}>

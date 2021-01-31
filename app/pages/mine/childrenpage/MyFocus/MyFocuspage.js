@@ -27,7 +27,7 @@ export default class MyFocus extends Component {
                 <View style={{height: 40, justifyContent: 'center'}}>
                     <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('MyFocusPro')}>
                         <View style={{justifyContent: 'center', marginStart: 20}}>
-                            <Text style={{color: 'black'}}>关注车辆</Text>
+                            <Text style={{color: 'black'}}>关注商品</Text>
                         </View>
                     </TouchableWithoutFeedback>
                 </View>

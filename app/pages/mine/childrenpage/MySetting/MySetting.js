@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {AsyncStorage, Dimensions, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {Dimensions, Text, TouchableWithoutFeedback, View, Alert} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Minepageheader from '../../../components/minepageheader';
 import Global from '../../../Global';
 const {width} = Dimensions.get('window'); //获取当前屏幕宽度
@@ -32,7 +33,7 @@ export default class MySetting extends Component {
                 <View style={{height: 40, marginStart: 20, justifyContent: 'center'}}>
                     <TouchableWithoutFeedback
                         onPress={() => {
-                            AsyncStorage.clear().then(alert('清除成功！'));
+                            AsyncStorage.clear().then(Alert.alert('清除成功！'));
                         }}>
                         <Text style={{fontSize: 15, color: 'black'}}>清除缓存</Text>
                     </TouchableWithoutFeedback>
@@ -43,7 +44,7 @@ export default class MySetting extends Component {
                         onPress={() => {
                             this.props.navigation.navigate('About');
                         }}>
-                        <Text style={{fontSize: 15, color: 'black'}}>关于猛龙汽车商城</Text>
+                        <Text style={{fontSize: 15, color: 'black'}}>关于XX商城</Text>
                     </TouchableWithoutFeedback>
                 </View>
                 <View style={{height: 1, backgroundColor: '#cccccc'}} />
@@ -52,7 +53,7 @@ export default class MySetting extends Component {
                 <View style={{height: 40, justifyContent: 'center', alignItems: 'center'}}>
                     <TouchableWithoutFeedback
                         onPress={() => {
-                            AsyncStorage.clear().then(this.props.navigation.navigate('Login'));
+                            AsyncStorage.clear().then(this.props.navigation.navigate('Loginpage'));
                         }}>
                         <Text style={{fontSize: 15, color: 'black'}}>退出账号</Text>
                     </TouchableWithoutFeedback>

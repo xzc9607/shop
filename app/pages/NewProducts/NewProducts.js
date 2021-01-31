@@ -99,44 +99,47 @@ export default class NewProducts extends Component {
                         </TouchableWithoutFeedback>
                     </View>
                 </View>
-                <ScrollView>
-                    <View style={styles.swiperview}>
-                        <Swipercomponent />
-                    </View>
 
-                    <View style={{marginTop: 15, backgroundColor: 'white'}} />
-
-                    <FlatList
-                        data={this.state.productlist}
-                        renderItem={({item}) => (
-                            <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('CarPage', {item})}>
-                                <View style={{backgroundColor: 'white'}}>
-                                    <View style={styles.listtext}>
-                                        <View
-                                            style={{
-                                                width: (2 * width) / 5,
-                                                justifyContent: 'center',
-                                                alignItems: 'center',
-                                            }}>
-                                            <Image
-                                                resizeMode="stretch"
-                                                style={styles.listimage}
-                                                source={require('./../../../static/img/car.jpg')}
-                                            />
-                                        </View>
-                                        <View style={styles.listbody}>
-                                            <View style={{width: (3 * width) / 5, marginStart: 20}}>
-                                                <Text style={{color: 'black', fontSize: 19}}>{item.productname}</Text>
-                                                <Text style={{color: 'black', fontSize: 19}}>{item.kind}</Text>
-                                                <Text>厂商指导价{item.price}元</Text>
-                                            </View>
+                <FlatList
+                    data={this.state.productlist}
+                    ListHeaderComponent={
+                        <View style={styles.swiperview}>
+                            <Swipercomponent />
+                        </View>
+                    }
+                    ListFooterComponent={
+                        <View style={{backgroundColor: 'white', justifyContent: 'center', alignItems: 'center'}}>
+                            <Text style={{fontSize: 20, color: 'black'}}>已经到底了！</Text>
+                        </View>
+                    }
+                    renderItem={({item}) => (
+                        <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('CarPage', {item})}>
+                            <View style={{backgroundColor: 'white'}}>
+                                <View style={styles.listtext}>
+                                    <View
+                                        style={{
+                                            width: (2 * width) / 5,
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                        }}>
+                                        <Image
+                                            resizeMode="stretch"
+                                            style={styles.listimage}
+                                            source={require('./../../../static/img/car.jpg')}
+                                        />
+                                    </View>
+                                    <View style={styles.listbody}>
+                                        <View style={{width: (3 * width) / 5, marginStart: 20}}>
+                                            <Text style={{color: 'black', fontSize: 19}}>{item.productname}</Text>
+                                            <Text style={{color: 'black', fontSize: 19}}>{item.kind}</Text>
+                                            <Text>厂商指导价{item.price}元</Text>
                                         </View>
                                     </View>
                                 </View>
-                            </TouchableWithoutFeedback>
-                        )}
-                    />
-                </ScrollView>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    )}
+                />
             </View>
         );
     }
