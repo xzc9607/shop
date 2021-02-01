@@ -8,7 +8,6 @@ const {width} = Dimensions.get('window'); //获取当前屏幕宽度
 export default class Swipercomponent extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             imgname: 0,
         };
@@ -29,8 +28,9 @@ export default class Swipercomponent extends Component {
                     <Image
                         resizeMode="cover"
                         style={{width: this.width, height: 150}}
-                        //source={{uri: 'gUrl.carimgurl' + Math.ceil(Math.random() * 10) + '.jpg'}}
-                        source={require('./../../../static/img/1.jpg')}
+                        // eslint-disable-next-line no-undef
+                        source={{uri: gUrl.productimgurl + 'productimg/' + Math.ceil(Math.random() * 10) + '.jpg'}}
+                        //source={require('./../../../static/img/1.jpg')}
                     />
                 </View>
 
@@ -38,8 +38,9 @@ export default class Swipercomponent extends Component {
                     <Image
                         resizeMode="cover"
                         style={{width: this.width, height: 150}}
-                        //source={{uri: gUrl.carimgurl + Math.ceil(Math.random() * 10) + '.jpg'}}
-                        source={require('./../../../static/img/2.jpg')}
+                        // eslint-disable-next-line no-undef
+                        source={{uri: gUrl.productimgurl + 'productimg/' + Math.ceil(Math.random() * 10) + '.jpg'}}
+                        //source={require('./../../../static/img/2.jpg')}
                     />
                 </View>
 
@@ -47,8 +48,9 @@ export default class Swipercomponent extends Component {
                     <Image
                         resizeMode="cover"
                         style={{width: this.width, height: 150}}
-                        //source={{uri: gUrl.carimgurl + Math.ceil(Math.random() * 10) + '.jpg'}}
-                        source={require('./../../../static/img/3.jpg')}
+                        // eslint-disable-next-line no-undef
+                        source={{uri: gUrl.productimgurl + 'productimg/' + Math.ceil(Math.random() * 10) + '.jpg'}}
+                        //source={require('./../../../static/img/3.jpg')}
                     />
                 </View>
             </Swiper>

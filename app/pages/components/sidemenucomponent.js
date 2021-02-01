@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import {Alert, AsyncStorage, FlatList, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {Alert, FlatList, Text, TouchableWithoutFeedback, View} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Indexheader from './indexheader';
+// eslint-disable-next-line no-unused-vars
 import Global from '../Global';
 
 export default class Sidemenucomponent extends Component {
@@ -16,6 +18,7 @@ export default class Sidemenucomponent extends Component {
         };
 
         //获取店铺列表
+        // eslint-disable-next-line no-undef
         fetch(gUrl.httpurl + '/getshoplist')
             .then((response) => {
                 this.res = JSON.parse(response._bodyText);

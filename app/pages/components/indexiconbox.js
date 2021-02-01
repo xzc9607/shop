@@ -19,7 +19,7 @@ export default class Indexiconbox extends Component {
                         <View style={styles.ciclebox1}>
                             <TouchableWithoutFeedback>
                                 <View>
-                                    <Icon name="car" size={25} color="#fff" />
+                                    <Icon name="inbox" size={30} color="#fff" />
                                 </View>
                             </TouchableWithoutFeedback>
                         </View>
@@ -53,16 +53,16 @@ export default class Indexiconbox extends Component {
                 <View style={styles.iconboxview2}>
                     <View style={{marginStart: 1, flexDirection: 'row'}}>
                         <View style={styles.iconbox}>
-                            <Text style={styles.iconboxtext}>猛龙新车</Text>
+                            <Text style={styles.iconboxtext}>XX新品</Text>
                         </View>
                         <View style={styles.iconbox}>
                             <Text style={styles.iconboxtext}>以旧换新</Text>
                         </View>
                         <View style={styles.iconbox}>
-                            <Text style={styles.iconboxtext}>分期按揭</Text>
+                            <Text style={styles.iconboxtext}>订单状态</Text>
                         </View>
                         <View style={styles.iconbox}>
-                            <Text style={styles.iconboxtext}>保险</Text>
+                            <Text style={styles.iconboxtext}>实用工具</Text>
                         </View>
                     </View>
                 </View>

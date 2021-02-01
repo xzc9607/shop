@@ -173,25 +173,25 @@ export default class IndexPage extends Component {
                             <View style={styles.newcarchoosebox}>
                                 <TouchableWithoutFeedback
                                     onPress={() =>
-                                        this.myScrollView.scrollTo({x: 0, y: this.lsflayoutY, animated: true})
+                                        this.myScrollView.scrollTo({x: 0, y: this.dcblayoutY, animated: true})
                                     }>
-                                    <Text style={styles.newcarchooseview3text}>0首付</Text>
+                                    <Text style={styles.newcarchooseview3text}>单层杯</Text>
                                 </TouchableWithoutFeedback>
                             </View>
                             <View style={styles.newcarchoosebox}>
                                 <TouchableWithoutFeedback
                                     onPress={() =>
-                                        this.myScrollView.scrollTo({x: 0, y: this.mckzqlayoutY, animated: true})
+                                        this.myScrollView.scrollTo({x: 0, y: this.scblayoutY, animated: true})
                                     }>
-                                    <Text style={styles.newcarchooseview3text}>买车可赚钱</Text>
+                                    <Text style={styles.newcarchooseview3text}>双层杯</Text>
                                 </TouchableWithoutFeedback>
                             </View>
                             <View style={styles.newcarchoosebox}>
                                 <TouchableWithoutFeedback
                                     onPress={() =>
-                                        this.myScrollView.scrollTo({x: 0, y: this.zqlayoutY, animated: true})
+                                        this.myScrollView.scrollTo({x: 0, y: this.bwblayoutY, animated: true})
                                     }>
-                                    <Text style={styles.newcarchooseview3text}>5%专区</Text>
+                                    <Text style={styles.newcarchooseview3text}>保温杯</Text>
                                 </TouchableWithoutFeedback>
                             </View>
                             <View style={styles.newcarchoosebox}>
@@ -207,42 +207,42 @@ export default class IndexPage extends Component {
                             <View style={styles.newcarchoosebox}>
                                 <TouchableWithoutFeedback
                                     onPress={() =>
-                                        this.myScrollView.scrollTo({x: 0, y: this.cjsjlayoutY, animated: true})
+                                        this.myScrollView.scrollTo({x: 0, y: this.jplhlayoutY, animated: true})
                                     }>
-                                    <Text style={styles.newcarchooseview3text}>超级试驾</Text>
+                                    <Text style={styles.newcarchooseview3text}>精品礼盒</Text>
                                 </TouchableWithoutFeedback>
                             </View>
                             <View style={styles.newcarchoosebox}>
                                 <TouchableWithoutFeedback
                                     onPress={() =>
-                                        this.myScrollView.scrollTo({x: 0, y: this.rxhclayoutY, animated: true})
+                                        this.myScrollView.scrollTo({x: 0, y: this.rxsplayoutY, animated: true})
                                     }>
-                                    <Text style={styles.newcarchooseview3text}>热销好车</Text>
+                                    <Text style={styles.newcarchooseview3text}>热销商品</Text>
                                 </TouchableWithoutFeedback>
                             </View>
                             <View style={styles.newcarchoosebox}>
                                 <TouchableWithoutFeedback
                                     onPress={() =>
-                                        this.myScrollView.scrollTo({x: 0, y: this.cdyglayoutY, animated: true})
+                                        this.myScrollView.scrollTo({x: 0, y: this.czzhlayoutY, animated: true})
                                     }>
-                                    <Text style={styles.newcarchooseview3text}>超低月供</Text>
+                                    <Text style={styles.newcarchooseview3text}>超值组合</Text>
                                 </TouchableWithoutFeedback>
                             </View>
                             <View style={styles.newcarchoosebox}>
                                 <TouchableWithoutFeedback
                                     onPress={() =>
-                                        this.myScrollView.scrollTo({x: 0, y: this.xcsjlayoutY, animated: true})
+                                        this.myScrollView.scrollTo({x: 0, y: this.xpsjlayoutY, animated: true})
                                     }>
-                                    <Text style={styles.newcarchooseview3text}>新车上架</Text>
+                                    <Text style={styles.newcarchooseview3text}>新品上架</Text>
                                 </TouchableWithoutFeedback>
                             </View>
                         </View>
 
                         <View
                             onLayout={(event) => {
-                                this.lsflayoutY = event.nativeEvent.layout.y;
+                                this.dcblayoutY = event.nativeEvent.layout.y;
                             }}>
-                            <IndexLabel labeltext={'0首付'} bgcolor={'#f94806'} />
+                            <IndexLabel labeltext={'单层杯'} bgcolor={'#f94806'} />
                             <FlatList
                                 data={this.state.lsf}
                                 renderItem={({item}) => (
@@ -285,9 +285,9 @@ export default class IndexPage extends Component {
 
                         <View
                             onLayout={(event) => {
-                                this.mckzqlayoutY = event.nativeEvent.layout.y;
+                                this.scblayoutY = event.nativeEvent.layout.y;
                             }}>
-                            <IndexLabel labeltext={'买车可赚钱'} bgcolor={'#00b7ee'} />
+                            <IndexLabel labeltext={'双层杯'} bgcolor={'#00b7ee'} />
                             <FlatList
                                 data={this.state.mckzq}
                                 renderItem={({item}) => (
@@ -329,9 +329,9 @@ export default class IndexPage extends Component {
                         </View>
                         <View
                             onLayout={(event) => {
-                                this.zqlayoutY = event.nativeEvent.layout.y;
+                                this.bwblayoutY = event.nativeEvent.layout.y;
                             }}>
-                            <IndexLabel labeltext={'5%专区'} bgcolor={'#ff2e75'} />
+                            <IndexLabel labeltext={'保温杯'} bgcolor={'#ff2e75'} />
                             <FlatList
                                 data={this.state.zq}
                                 renderItem={({item}) => (
@@ -418,9 +418,9 @@ export default class IndexPage extends Component {
 
                         <View
                             onLayout={(event) => {
-                                this.rxhclayoutY = event.nativeEvent.layout.y;
+                                this.jplhlayoutY = event.nativeEvent.layout.y;
                             }}>
-                            <IndexLabel labeltext={'热销好车'} bgcolor={'#bd69d8'} />
+                            <IndexLabel labeltext={'精品礼盒'} bgcolor={'#bd69d8'} />
                             <FlatList
                                 data={this.state.rxhc}
                                 renderItem={({item}) => (
@@ -463,9 +463,99 @@ export default class IndexPage extends Component {
 
                         <View
                             onLayout={(event) => {
-                                this.cdyglayoutY = event.nativeEvent.layout.y;
+                                this.rxsplayoutY = event.nativeEvent.layout.y;
                             }}>
-                            <IndexLabel labeltext={'超低月供'} bgcolor={'#fe9833'} />
+                            <IndexLabel labeltext={'热销商品'} bgcolor={'#fe9833'} />
+                            <FlatList
+                                data={this.state.cdyg}
+                                renderItem={({item}) => (
+                                    <TouchableWithoutFeedback
+                                        onPress={() => this.props.navigation.navigate('CarPage', {item})}>
+                                        <View style={{backgroundColor: 'white'}}>
+                                            <View style={styles.listtext}>
+                                                <View style={styles.listhead}>
+                                                    <View style={{alignItems: 'center'}}>
+                                                        <Text style={{color: 'white'}}>{item.label}</Text>
+                                                    </View>
+                                                </View>
+                                                <View style={styles.listbody}>
+                                                    <View style={{width: width / 2, marginStart: 20}}>
+                                                        <Text style={{color: 'black', fontSize: 30}}>{item.brand}</Text>
+                                                        <Text>{item.model}</Text>
+                                                        <Text style={{color: '#FF2d16'}}>首付5000元</Text>
+                                                        <Text>月供5000元</Text>
+                                                    </View>
+                                                    <View
+                                                        style={{
+                                                            width: width / 2,
+                                                            justifyContent: 'center',
+                                                            alignItems: 'center',
+                                                            marginStart: -30,
+                                                        }}>
+                                                        <Image
+                                                            resizeMode="stretch"
+                                                            style={styles.listimage}
+                                                            source={require('./../../../static/img/car.jpg')}
+                                                        />
+                                                    </View>
+                                                </View>
+                                            </View>
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                )}
+                            />
+                        </View>
+
+                        <View
+                            onLayout={(event) => {
+                                this.xpsjlayoutY = event.nativeEvent.layout.y;
+                            }}>
+                            <IndexLabel labeltext={'新品上架'} bgcolor={'#fe9833'} />
+                            <FlatList
+                                data={this.state.cdyg}
+                                renderItem={({item}) => (
+                                    <TouchableWithoutFeedback
+                                        onPress={() => this.props.navigation.navigate('CarPage', {item})}>
+                                        <View style={{backgroundColor: 'white'}}>
+                                            <View style={styles.listtext}>
+                                                <View style={styles.listhead}>
+                                                    <View style={{alignItems: 'center'}}>
+                                                        <Text style={{color: 'white'}}>{item.label}</Text>
+                                                    </View>
+                                                </View>
+                                                <View style={styles.listbody}>
+                                                    <View style={{width: width / 2, marginStart: 20}}>
+                                                        <Text style={{color: 'black', fontSize: 30}}>{item.brand}</Text>
+                                                        <Text>{item.model}</Text>
+                                                        <Text style={{color: '#FF2d16'}}>首付5000元</Text>
+                                                        <Text>月供5000元</Text>
+                                                    </View>
+                                                    <View
+                                                        style={{
+                                                            width: width / 2,
+                                                            justifyContent: 'center',
+                                                            alignItems: 'center',
+                                                            marginStart: -30,
+                                                        }}>
+                                                        <Image
+                                                            resizeMode="stretch"
+                                                            style={styles.listimage}
+                                                            source={require('./../../../static/img/car.jpg')}
+                                                        />
+                                                    </View>
+                                                </View>
+                                            </View>
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                )}
+                            />
+                        </View>
+
+                        <View
+                            onLayout={(event) => {
+                                this.czzhlayoutY = event.nativeEvent.layout.y;
+                            }}>
+                            <IndexLabel labeltext={'超值组合'} bgcolor={'#fe9833'} />
                             <FlatList
                                 data={this.state.cdyg}
                                 renderItem={({item}) => (
