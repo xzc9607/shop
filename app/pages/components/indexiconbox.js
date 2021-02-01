@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Dimensions, StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
+// eslint-disable-next-line no-unused-vars
 import Global from '../Global';
 
 const {width} = Dimensions.get('window'); //获取当前屏幕宽度

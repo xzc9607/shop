@@ -24,6 +24,7 @@ export default class Loginpage extends Component {
         this.state = {
             username: '',
             password: '',
+            uid: '',
         };
     }
 
@@ -59,7 +60,29 @@ export default class Loginpage extends Component {
                 if (res.code === 1) {
                     AsyncStorage.setItem('user', formData.username)
                         .then((responses) => {
-                            this.props.navigation.navigate('Main');
+                            fetch(gUrl.httpurl + '/users')
+                                .then((responses) => responses.json())
+                                .then((res) => {
+                                    var temp = JSON.parse(JSON.stringify(res.list));
+                                    for (var i = 0; i < temp.length; i++) {
+                                        if (temp[i].username === formData.username) {
+                                            this.setState({uid: temp[i].uid});
+                                            console.log(this.state.uid);
+                                            AsyncStorage.setItem('uid', this.state.uid.toString())
+                                                .then((responses) => {
+                                                    this.props.navigation.navigate('Main');
+                                                })
+                                            .catch((responses) => {
+                                                //console.log(formData.username);
+                                                Alert.alert('存入失败');
+                                            });
+                                        }
+                                    }
+
+                                })
+                                .catch((error) => {
+                                    console.log(error);
+                                });
                         })
                         .catch((responses) => {
                             console.log(formData.username);

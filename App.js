@@ -21,6 +21,10 @@ import Forgetpasswordpage from './app/pages/login/forgetpassword/forgetpasswordp
 //搜索
 import Searchpage from './app/pages/Search/searchpage';
 
+//商品详情
+import Productpage from './app/pages/Product/Productpage';
+import Purchasepage from './app/pages/Purchase/Purchasepage';
+
 import MyOrder from './app/pages/mine/childrenpage/MyOrder/MyOrderpage';
 import MyFocusPro from './app/pages/mine/childrenpage/MyFocusPro/MyFocusPropage';
 import MyFocus from './app/pages/mine/childrenpage/MyFocus/MyFocuspage';
@@ -36,7 +40,7 @@ export const TabNav = createBottomTabNavigator(
         Index: {
             screen: IndexPage,
         },
-        NewCar: {
+        NewProducts: {
             screen: NewProducts,
         },
         Mine: {
@@ -91,6 +95,12 @@ export const TabNav = createBottomTabNavigator(
 
 const RootStack = createStackNavigator(
     {
+        Productpage: {
+            screen: Productpage,
+        },
+        Purchasepage: {
+            screen: Purchasepage,
+        },
         Searchpage: {
             screen: Searchpage,
         },

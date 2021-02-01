@@ -113,7 +113,7 @@ export default class NewProducts extends Component {
                         </View>
                     }
                     renderItem={({item}) => (
-                        <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('CarPage', {item})}>
+                        <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Productpage', {item})}>
                             <View style={{backgroundColor: 'white'}}>
                                 <View style={styles.listtext}>
                                     <View
