@@ -67,6 +67,7 @@ export default class Minepage extends Component {
                         if (temp[i].username === this.state.username) {
                             this.setState({uid: temp[i].uid});
                             this.setState({profileaddress: temp[i].profileaddress});
+                            console.log(this.state.profileaddress);
                         }
                     }
                     // eslint-disable-next-line no-undef

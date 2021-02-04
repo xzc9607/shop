@@ -21,6 +21,7 @@ import Global from '../Global';
 const {width} = Dimensions.get('window'); //获取当前屏幕宽度
 
 export default class NewProducts extends Component {
+    _keyExtractor = (item, index) => item.id;
     static navigationOptions = {
         tabBarLabel: '新品',
         headerShown: null,
@@ -101,6 +102,7 @@ export default class NewProducts extends Component {
                 </View>
 
                 <FlatList
+                    keyExtractor={this._keyExtractor}
                     data={this.state.productlist}
                     ListHeaderComponent={
                         <View style={styles.swiperview}>

@@ -22,6 +22,7 @@ import Global from '../Global';
 const {width} = Dimensions.get('window'); //获取当前屏幕宽度
 
 export default class IndexPage extends Component {
+    _keyExtractor = (item, index) => item.id;
     static navigationOptions = {
         tabBarLabel: '首页',
         tabBarIcon: ({focused, tintColor}) => <Icon name="home" size={25} color="#ffffff" />,
@@ -32,64 +33,73 @@ export default class IndexPage extends Component {
         this.state = {
             text: '个性SUV',
             isOpen: false,
-            carlist: null,
-            lsf: [
-                {
-                    brand: '1',
-                    label: '0首付',
-                    model: 'zzz',
-                },
-            ],
-            cdyg: [
-                {
-                    brand: '1',
-                    label: '超低月供',
-                    model: 'zzz',
-                },
-            ],
-            xcsj: [
-                {
-                    brand: '1',
-                    label: '新车上架',
-                    model: 'zzz',
-                },
-            ],
-            rxhc: [
-                {
-                    brand: '1',
-                    label: '热销好车',
-                    model: 'zzz',
-                },
-            ],
-            cjsj: [
-                {
-                    brand: '1',
-                    label: '超级试驾',
-                    model: 'zzz',
-                },
-            ],
-            zjq: [
-                {
-                    brand: '1',
-                    label: '直降区',
-                    model: 'zzz',
-                },
-            ],
-            zq: [
-                {
-                    brand: '1',
-                    label: '5%专区',
-                    model: 'zzz',
-                },
-            ],
-            mckzq: [
-                {
-                    brand: '1',
-                    label: '买车可赚钱',
-                    model: 'zzz',
-                },
-            ],
+            productlist: null,
+            dcb: [],
+            scb: [],
+            bwb: [],
+            zjq: [],
+            jplh: [],
+            rxsp: [],
+            czzh: [],
+            xpsj: [],
         };
+        // eslint-disable-next-line no-undef
+        fetch(gUrl.httpurl + '/product/getProductlist')
+            .then((responses) => responses.json())
+            .then((res) => {
+                var temp = JSON.parse(JSON.stringify(res));
+                this.setState({productlist: temp});
+                // for (var i = 0; i < this.state.productlist.length; i++) {
+                //     console.log(this.state.productlist[i]);
+                // }
+                var dcb = [];
+                var scb = [];
+                var bwb = [];
+                var zjq = [];
+                var jplh = [];
+                var rxsp = [];
+                var czzh = [];
+                var xpsj = [];
+
+                for (var i = 0; i < this.state.productlist.length; i++) {
+                    if (this.state.productlist[i].label === '单层杯') {
+                        dcb.push(this.state.productlist[i]);
+                    }
+                    if (this.state.productlist[i].label === '双层杯') {
+                        scb.push(this.state.productlist[i]);
+                    }
+                    if (this.state.productlist[i].label === '保温杯') {
+                        bwb.push(this.state.productlist[i]);
+                    }
+                    if (this.state.productlist[i].label === '直降区') {
+                        zjq.push(this.state.productlist[i]);
+                    }
+                    if (this.state.productlist[i].label === '精品礼盒') {
+                        jplh.push(this.state.productlist[i]);
+                    }
+                    if (this.state.productlist[i].label === '热销商品') {
+                        rxsp.push(this.state.productlist[i]);
+                    }
+                    if (this.state.productlist[i].label === '超值组合') {
+                        czzh.push(this.state.productlist[i]);
+                    }
+                    if (this.state.productlist[i].label === '新品上架') {
+                        xpsj.push(this.state.productlist[i]);
+                    }
+                }
+                this.setState({dcb: dcb});
+                //console.log(this.state.dcb);
+                this.setState({scb: scb});
+                this.setState({bwb: bwb});
+                this.setState({zjq: zjq});
+                this.setState({jplh: jplh});
+                this.setState({rxsp: rxsp});
+                this.setState({czzh: czzh});
+                this.setState({xpsj: xpsj});
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
     getnumber() {
         Linking.openURL('tel:${05506562065}');
@@ -244,10 +254,12 @@ export default class IndexPage extends Component {
                             }}>
                             <IndexLabel labeltext={'单层杯'} bgcolor={'#f94806'} />
                             <FlatList
-                                data={this.state.lsf}
+                                key={1}
+                                keyExtractor={this._keyExtractor}
+                                data={this.state.dcb}
                                 renderItem={({item}) => (
                                     <TouchableWithoutFeedback
-                                        onPress={() => this.props.navigation.navigate('CarPage', {item})}>
+                                        onPress={() => this.props.navigation.navigate('Productpage', {item})}>
                                         <View style={{backgroundColor: 'white'}}>
                                             <View style={styles.listtext}>
                                                 <View style={styles.listhead}>
@@ -257,7 +269,9 @@ export default class IndexPage extends Component {
                                                 </View>
                                                 <View style={styles.listbody}>
                                                     <View style={{width: width / 2, marginStart: 20}}>
-                                                        <Text style={{color: 'black', fontSize: 30}}>{item.brand}</Text>
+                                                        <Text style={{color: 'black', fontSize: 30}}>
+                                                            {item.productname}
+                                                        </Text>
                                                         <Text>{item.model}</Text>
                                                         <Text style={{color: '#FF2d16'}}>首付5000元</Text>
                                                         <Text>月供5000元</Text>
@@ -289,10 +303,12 @@ export default class IndexPage extends Component {
                             }}>
                             <IndexLabel labeltext={'双层杯'} bgcolor={'#00b7ee'} />
                             <FlatList
-                                data={this.state.mckzq}
+                                key={2}
+                                keyExtractor={this._keyExtractor}
+                                data={this.state.scb}
                                 renderItem={({item}) => (
                                     <TouchableWithoutFeedback
-                                        onPress={() => this.props.navigation.navigate('CarPage', {item})}>
+                                        onPress={() => this.props.navigation.navigate('Productpage', {item})}>
                                         <View style={{backgroundColor: 'white'}}>
                                             <View style={styles.listtext}>
                                                 <View style={styles.listhead}>
@@ -302,7 +318,9 @@ export default class IndexPage extends Component {
                                                 </View>
                                                 <View style={styles.listbody}>
                                                     <View style={{width: width / 2, marginStart: 20}}>
-                                                        <Text style={{color: 'black', fontSize: 30}}>{item.brand}</Text>
+                                                        <Text style={{color: 'black', fontSize: 30}}>
+                                                            {item.productname}
+                                                        </Text>
                                                         <Text>{item.model}</Text>
                                                         <Text style={{color: '#FF2d16'}}>首付5000元</Text>
                                                         <Text>月供5000元</Text>
@@ -333,10 +351,12 @@ export default class IndexPage extends Component {
                             }}>
                             <IndexLabel labeltext={'保温杯'} bgcolor={'#ff2e75'} />
                             <FlatList
-                                data={this.state.zq}
+                                key={3}
+                                keyExtractor={this._keyExtractor}
+                                data={this.state.bwb}
                                 renderItem={({item}) => (
                                     <TouchableWithoutFeedback
-                                        onPress={() => this.props.navigation.navigate('CarPage', {item})}>
+                                        onPress={() => this.props.navigation.navigate('Productpage', {item})}>
                                         <View style={{backgroundColor: 'white'}}>
                                             <View style={styles.listtext}>
                                                 <View style={styles.listhead}>
@@ -346,7 +366,9 @@ export default class IndexPage extends Component {
                                                 </View>
                                                 <View style={styles.listbody}>
                                                     <View style={{width: width / 2, marginStart: 20}}>
-                                                        <Text style={{color: 'black', fontSize: 30}}>{item.brand}</Text>
+                                                        <Text style={{color: 'black', fontSize: 30}}>
+                                                            {item.productname}
+                                                        </Text>
                                                         <Text>{item.model}</Text>
                                                         <Text style={{color: '#FF2d16'}}>首付5000元</Text>
                                                         <Text>月供5000元</Text>
@@ -377,10 +399,12 @@ export default class IndexPage extends Component {
                             }}>
                             <IndexLabel labeltext={'直降区'} bgcolor={'#ff4141'} />
                             <FlatList
+                                key={4}
+                                keyExtractor={this._keyExtractor}
                                 data={this.state.zjq}
                                 renderItem={({item}) => (
                                     <TouchableWithoutFeedback
-                                        onPress={() => this.props.navigation.navigate('CarPage', {item})}>
+                                        onPress={() => this.props.navigation.navigate('Productpage', {item})}>
                                         <View style={{backgroundColor: 'white'}}>
                                             <View style={styles.listtext}>
                                                 <View style={styles.listhead}>
@@ -390,7 +414,9 @@ export default class IndexPage extends Component {
                                                 </View>
                                                 <View style={styles.listbody}>
                                                     <View style={{width: width / 2, marginStart: 20}}>
-                                                        <Text style={{color: 'black', fontSize: 30}}>{item.brand}</Text>
+                                                        <Text style={{color: 'black', fontSize: 30}}>
+                                                            {item.productname}
+                                                        </Text>
                                                         <Text>{item.model}</Text>
                                                         <Text style={{color: '#FF2d16'}}>首付5000元</Text>
                                                         <Text>月供5000元</Text>
@@ -422,10 +448,12 @@ export default class IndexPage extends Component {
                             }}>
                             <IndexLabel labeltext={'精品礼盒'} bgcolor={'#bd69d8'} />
                             <FlatList
-                                data={this.state.rxhc}
+                                key={5}
+                                keyExtractor={this._keyExtractor}
+                                data={this.state.jplh}
                                 renderItem={({item}) => (
                                     <TouchableWithoutFeedback
-                                        onPress={() => this.props.navigation.navigate('CarPage', {item})}>
+                                        onPress={() => this.props.navigation.navigate('Productpage', {item})}>
                                         <View style={{backgroundColor: 'white'}}>
                                             <View style={styles.listtext}>
                                                 <View style={styles.listhead}>
@@ -435,7 +463,9 @@ export default class IndexPage extends Component {
                                                 </View>
                                                 <View style={styles.listbody}>
                                                     <View style={{width: width / 2, marginStart: 20}}>
-                                                        <Text style={{color: 'black', fontSize: 30}}>{item.brand}</Text>
+                                                        <Text style={{color: 'black', fontSize: 30}}>
+                                                            {item.productname}
+                                                        </Text>
                                                         <Text>{item.model}</Text>
                                                         <Text style={{color: '#FF2d16'}}>首付5000元</Text>
                                                         <Text>月供5000元</Text>
@@ -467,10 +497,12 @@ export default class IndexPage extends Component {
                             }}>
                             <IndexLabel labeltext={'热销商品'} bgcolor={'#fe9833'} />
                             <FlatList
-                                data={this.state.cdyg}
+                                key={6}
+                                keyExtractor={this._keyExtractor}
+                                data={this.state.rxsp}
                                 renderItem={({item}) => (
                                     <TouchableWithoutFeedback
-                                        onPress={() => this.props.navigation.navigate('CarPage', {item})}>
+                                        onPress={() => this.props.navigation.navigate('Productpage', {item})}>
                                         <View style={{backgroundColor: 'white'}}>
                                             <View style={styles.listtext}>
                                                 <View style={styles.listhead}>
@@ -480,7 +512,9 @@ export default class IndexPage extends Component {
                                                 </View>
                                                 <View style={styles.listbody}>
                                                     <View style={{width: width / 2, marginStart: 20}}>
-                                                        <Text style={{color: 'black', fontSize: 30}}>{item.brand}</Text>
+                                                        <Text style={{color: 'black', fontSize: 30}}>
+                                                            {item.productname}
+                                                        </Text>
                                                         <Text>{item.model}</Text>
                                                         <Text style={{color: '#FF2d16'}}>首付5000元</Text>
                                                         <Text>月供5000元</Text>
@@ -512,10 +546,12 @@ export default class IndexPage extends Component {
                             }}>
                             <IndexLabel labeltext={'新品上架'} bgcolor={'#fe9833'} />
                             <FlatList
-                                data={this.state.cdyg}
+                                key={7}
+                                keyExtractor={this._keyExtractor}
+                                data={this.state.xpsj}
                                 renderItem={({item}) => (
                                     <TouchableWithoutFeedback
-                                        onPress={() => this.props.navigation.navigate('CarPage', {item})}>
+                                        onPress={() => this.props.navigation.navigate('Productpage', {item})}>
                                         <View style={{backgroundColor: 'white'}}>
                                             <View style={styles.listtext}>
                                                 <View style={styles.listhead}>
@@ -525,7 +561,9 @@ export default class IndexPage extends Component {
                                                 </View>
                                                 <View style={styles.listbody}>
                                                     <View style={{width: width / 2, marginStart: 20}}>
-                                                        <Text style={{color: 'black', fontSize: 30}}>{item.brand}</Text>
+                                                        <Text style={{color: 'black', fontSize: 30}}>
+                                                            {item.productname}
+                                                        </Text>
                                                         <Text>{item.model}</Text>
                                                         <Text style={{color: '#FF2d16'}}>首付5000元</Text>
                                                         <Text>月供5000元</Text>
@@ -557,10 +595,12 @@ export default class IndexPage extends Component {
                             }}>
                             <IndexLabel labeltext={'超值组合'} bgcolor={'#fe9833'} />
                             <FlatList
-                                data={this.state.cdyg}
+                                key={8}
+                                keyExtractor={this._keyExtractor}
+                                data={this.state.czzh}
                                 renderItem={({item}) => (
                                     <TouchableWithoutFeedback
-                                        onPress={() => this.props.navigation.navigate('CarPage', {item})}>
+                                        onPress={() => this.props.navigation.navigate('Productpage', {item})}>
                                         <View style={{backgroundColor: 'white'}}>
                                             <View style={styles.listtext}>
                                                 <View style={styles.listhead}>
@@ -570,7 +610,9 @@ export default class IndexPage extends Component {
                                                 </View>
                                                 <View style={styles.listbody}>
                                                     <View style={{width: width / 2, marginStart: 20}}>
-                                                        <Text style={{color: 'black', fontSize: 30}}>{item.brand}</Text>
+                                                        <Text style={{color: 'black', fontSize: 30}}>
+                                                            {item.productname}
+                                                        </Text>
                                                         <Text>{item.model}</Text>
                                                         <Text style={{color: '#FF2d16'}}>首付5000元</Text>
                                                         <Text>月供5000元</Text>
@@ -720,7 +762,7 @@ const styles = StyleSheet.create({
     listhead: {
         borderRadius: 5,
         height: 20,
-        width: 40,
+        width: 60,
         backgroundColor: '#FF2d16',
         marginStart: 20,
     },

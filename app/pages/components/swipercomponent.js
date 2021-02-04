@@ -29,7 +29,7 @@ export default class Swipercomponent extends Component {
                         resizeMode="cover"
                         style={{width: this.width, height: 150}}
                         // eslint-disable-next-line no-undef
-                        source={{uri: gUrl.productimgurl + 'productimg/' + Math.ceil(Math.random() * 10) + '.jpg'}}
+                        source={{uri: gUrl.productimgurl + 'productimg/' + Math.floor(Math.random() * 10) + '.jpg'}}
                         //source={require('./../../../static/img/1.jpg')}
                     />
                 </View>
@@ -39,7 +39,7 @@ export default class Swipercomponent extends Component {
                         resizeMode="cover"
                         style={{width: this.width, height: 150}}
                         // eslint-disable-next-line no-undef
-                        source={{uri: gUrl.productimgurl + 'productimg/' + Math.ceil(Math.random() * 10) + '.jpg'}}
+                        source={{uri: gUrl.productimgurl + 'productimg/' + Math.floor(Math.random() * 10) + '.jpg'}}
                         //source={require('./../../../static/img/2.jpg')}
                     />
                 </View>
@@ -49,7 +49,7 @@ export default class Swipercomponent extends Component {
                         resizeMode="cover"
                         style={{width: this.width, height: 150}}
                         // eslint-disable-next-line no-undef
-                        source={{uri: gUrl.productimgurl + 'productimg/' + Math.ceil(Math.random() * 10) + '.jpg'}}
+                        source={{uri: gUrl.productimgurl + 'productimg/' + Math.floor(Math.random() * 10) + '.jpg'}}
                         //source={require('./../../../static/img/3.jpg')}
                     />
                 </View>
