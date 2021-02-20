@@ -7,7 +7,7 @@ const android = OS === 'android';
 const isIPhoneX = ios && height === 812 && width === 375;
 const statusBarHeight = ios ? (isIPhoneX ? 44 : 20) : StatusBar.currentHeight;
 //const httpurl = 'http://81.70.32.108:3000';
-const httpurl = 'http://192.168.124.15:3000';
+const httpurl = 'http://192.168.124.21:3000';
 const localurl = 'http://192.168.0.112:8080';
 const productimgurl = 'https://shopfile-1254197204.cos.ap-shanghai.myqcloud.com/';
 

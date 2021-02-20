@@ -79,7 +79,7 @@ export default class myFocusPro extends Component {
                             <View style={{width: width / 3, justifyContent: 'center', alignItems: 'center'}}>
                                 <Image
                                     style={{width: 100, height: 100, resizeMode: 'contain'}}
-                                    source={require('./../../../../../static/img/car.jpg')}
+                                    source={require('./../../../../../static/img/p1.jpg')}
                                 />
                             </View>
                             <View style={{width: width / 3}}>

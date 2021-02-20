@@ -96,7 +96,7 @@ export default class Purchase extends Component {
                                 <Image
                                     resizeMode="stretch"
                                     style={styles.listimage}
-                                    source={require('./../../../static/img/car.jpg')}
+                                    source={require('./../../../static/img/p1.jpg')}
                                 />
                             </View>
                             <View style={styles.listbody}>

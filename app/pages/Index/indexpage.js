@@ -273,8 +273,8 @@ export default class IndexPage extends Component {
                                                             {item.productname}
                                                         </Text>
                                                         <Text>{item.model}</Text>
-                                                        <Text style={{color: '#FF2d16'}}>首付5000元</Text>
-                                                        <Text>月供5000元</Text>
+                                                        <Text style={{color: '#FF2d16'}}>{item.price}￥</Text>
+                                                        <Text>数量:{item.quantity}</Text>
                                                     </View>
                                                     <View
                                                         style={{
@@ -286,7 +286,7 @@ export default class IndexPage extends Component {
                                                         <Image
                                                             resizeMode="stretch"
                                                             style={styles.listimage}
-                                                            source={require('./../../../static/img/car.jpg')}
+                                                            source={require('./../../../static/img/p1.jpg')}
                                                         />
                                                     </View>
                                                 </View>
@@ -322,8 +322,8 @@ export default class IndexPage extends Component {
                                                             {item.productname}
                                                         </Text>
                                                         <Text>{item.model}</Text>
-                                                        <Text style={{color: '#FF2d16'}}>首付5000元</Text>
-                                                        <Text>月供5000元</Text>
+                                                        <Text style={{color: '#FF2d16'}}>{item.price}￥</Text>
+                                                        <Text>数量:{item.quantity}</Text>
                                                     </View>
                                                     <View
                                                         style={{
@@ -335,7 +335,7 @@ export default class IndexPage extends Component {
                                                         <Image
                                                             resizeMode="stretch"
                                                             style={styles.listimage}
-                                                            source={require('./../../../static/img/car.jpg')}
+                                                            source={require('./../../../static/img/p1.jpg')}
                                                         />
                                                     </View>
                                                 </View>
@@ -370,8 +370,8 @@ export default class IndexPage extends Component {
                                                             {item.productname}
                                                         </Text>
                                                         <Text>{item.model}</Text>
-                                                        <Text style={{color: '#FF2d16'}}>首付5000元</Text>
-                                                        <Text>月供5000元</Text>
+                                                        <Text style={{color: '#FF2d16'}}>{item.price}￥</Text>
+                                                        <Text>数量:{item.quantity}</Text>
                                                     </View>
                                                     <View
                                                         style={{
@@ -383,7 +383,7 @@ export default class IndexPage extends Component {
                                                         <Image
                                                             resizeMode="stretch"
                                                             style={styles.listimage}
-                                                            source={require('./../../../static/img/car.jpg')}
+                                                            source={require('./../../../static/img/p1.jpg')}
                                                         />
                                                     </View>
                                                 </View>
@@ -418,8 +418,8 @@ export default class IndexPage extends Component {
                                                             {item.productname}
                                                         </Text>
                                                         <Text>{item.model}</Text>
-                                                        <Text style={{color: '#FF2d16'}}>首付5000元</Text>
-                                                        <Text>月供5000元</Text>
+                                                        <Text style={{color: '#FF2d16'}}>{item.price}￥</Text>
+                                                        <Text>数量:{item.quantity}</Text>
                                                     </View>
                                                     <View
                                                         style={{
@@ -431,7 +431,7 @@ export default class IndexPage extends Component {
                                                         <Image
                                                             resizeMode="stretch"
                                                             style={styles.listimage}
-                                                            source={require('./../../../static/img/car.jpg')}
+                                                            source={require('./../../../static/img/p1.jpg')}
                                                         />
                                                     </View>
                                                 </View>
@@ -467,8 +467,8 @@ export default class IndexPage extends Component {
                                                             {item.productname}
                                                         </Text>
                                                         <Text>{item.model}</Text>
-                                                        <Text style={{color: '#FF2d16'}}>首付5000元</Text>
-                                                        <Text>月供5000元</Text>
+                                                        <Text style={{color: '#FF2d16'}}>{item.price}￥</Text>
+                                                        <Text>数量:{item.quantity}</Text>
                                                     </View>
                                                     <View
                                                         style={{
@@ -480,7 +480,7 @@ export default class IndexPage extends Component {
                                                         <Image
                                                             resizeMode="stretch"
                                                             style={styles.listimage}
-                                                            source={require('./../../../static/img/car.jpg')}
+                                                            source={require('./../../../static/img/p1.jpg')}
                                                         />
                                                     </View>
                                                 </View>
@@ -516,8 +516,8 @@ export default class IndexPage extends Component {
                                                             {item.productname}
                                                         </Text>
                                                         <Text>{item.model}</Text>
-                                                        <Text style={{color: '#FF2d16'}}>首付5000元</Text>
-                                                        <Text>月供5000元</Text>
+                                                        <Text style={{color: '#FF2d16'}}>{item.price}￥</Text>
+                                                        <Text>数量:{item.quantity}</Text>
                                                     </View>
                                                     <View
                                                         style={{
@@ -529,7 +529,7 @@ export default class IndexPage extends Component {
                                                         <Image
                                                             resizeMode="stretch"
                                                             style={styles.listimage}
-                                                            source={require('./../../../static/img/car.jpg')}
+                                                            source={require('./../../../static/img/p1.jpg')}
                                                         />
                                                     </View>
                                                 </View>
@@ -565,8 +565,8 @@ export default class IndexPage extends Component {
                                                             {item.productname}
                                                         </Text>
                                                         <Text>{item.model}</Text>
-                                                        <Text style={{color: '#FF2d16'}}>首付5000元</Text>
-                                                        <Text>月供5000元</Text>
+                                                        <Text style={{color: '#FF2d16'}}>{item.price}￥</Text>
+                                                        <Text>数量:{item.quantity}</Text>
                                                     </View>
                                                     <View
                                                         style={{
@@ -578,7 +578,7 @@ export default class IndexPage extends Component {
                                                         <Image
                                                             resizeMode="stretch"
                                                             style={styles.listimage}
-                                                            source={require('./../../../static/img/car.jpg')}
+                                                            source={require('./../../../static/img/p1.jpg')}
                                                         />
                                                     </View>
                                                 </View>
@@ -614,8 +614,8 @@ export default class IndexPage extends Component {
                                                             {item.productname}
                                                         </Text>
                                                         <Text>{item.model}</Text>
-                                                        <Text style={{color: '#FF2d16'}}>首付5000元</Text>
-                                                        <Text>月供5000元</Text>
+                                                        <Text style={{color: '#FF2d16'}}>{item.price}￥</Text>
+                                                        <Text>数量:{item.quantity}</Text>
                                                     </View>
                                                     <View
                                                         style={{
@@ -627,7 +627,7 @@ export default class IndexPage extends Component {
                                                         <Image
                                                             resizeMode="stretch"
                                                             style={styles.listimage}
-                                                            source={require('./../../../static/img/car.jpg')}
+                                                            source={require('./../../../static/img/p1.jpg')}
                                                         />
                                                     </View>
                                                 </View>
