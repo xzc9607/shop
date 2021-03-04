@@ -113,7 +113,7 @@ export default class Productpage extends Component {
                 </ScrollView>
                 <View style={{flexDirection: 'row'}}>
                     <View style={{width: width / 2}}>
-                        <Button onPress={() => this.addfocus()} title="关注该车" color="#ff4d00" />
+                        <Button onPress={() => this.addfocus()} title="关注商品" color="#ff4d00" />
                     </View>
 
                     <View style={{width: width / 2}}>
