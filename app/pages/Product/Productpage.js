@@ -65,11 +65,12 @@ export default class Productpage extends Component {
         })
             .then((responses) => responses.json())
             .then((res) => {
+                //console.log(res);
                 //res = JSON.parse(response._bodyText);
                 if (res.affectedRows === 1) {
                     Alert.alert('关注成功');
-                } else {
-                    Alert.alert(res.msg);
+                } else if (res.code === 0) {
+                    Alert.alert('您已关注过该商品！');
                 }
             })
             .catch((error) => {
