@@ -14,6 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {WebView} from 'react-native-webview';
 import Indexheader from '../components/indexheader';
 import Swipercomponent from '../components/swipercomponent';
+import Detailswipercompoment from '../components/detailswipercompoment';
 // eslint-disable-next-line no-unused-vars
 import Global from '../Global';
 
@@ -84,23 +85,23 @@ export default class Productpage extends Component {
 
                 <ScrollView style={{backgroundColor: 'white'}}>
                     <View style={styles.swiperview}>
-                        <Swipercomponent />
+                        <Detailswipercompoment />
                     </View>
 
                     <View style={{height: 50, backgroundColor: 'red', justifyContent: 'center'}}>
                         <Text style={{fontSize: 25, color: 'white', marginStart: 20}}>
-                            {this.props.navigation.state.params.item.productname}
+                        ￥{this.props.navigation.state.params.item.price}
                         </Text>
                     </View>
                     <View style={{alignItems: 'center'}}>
-                        <View style={{height: 160, width: width - 40, marginTop: 20}}>
+                        <View style={{height: 80, width: width - 40, marginTop: 20}}>
                             <View>
-                                <Text style={{fontSize: 20, color: 'black'}}>
-                                    {this.props.navigation.state.params.item.kind}
+                                <Text style={{fontSize: 30, color: 'black'}}>
+                                {this.props.navigation.state.params.item.productname}
                                 </Text>
                             </View>
-                            <View style={{marginTop: 5}}>
-                                <Text>厂商指导价：{this.props.navigation.state.params.item.price}</Text>
+                            <View style={{marginTop: 5,marginLeft:220}}>
+                                <Text>剩余数量：{this.props.navigation.state.params.item.quantity}</Text>
                             </View>
                             {/* <View style={{alignItems: 'flex-end'}}>
                                 <View
@@ -117,25 +118,20 @@ export default class Productpage extends Component {
                                     <Text style={{}}>已售1台</Text>
                                 </View>
                             </View> */}
-                            <View style={{height: 1, backgroundColor: '#ebebeb'}} />
+                            {/* <View style={{height: 1, backgroundColor: '#ebebeb'}} />
                             <View style={{flexDirection: 'row', height: 50, alignItems: 'center'}}>
                                 <View style={styles.listhead}>
-                                    <Text style={{color: 'white'}}>XX商城</Text>
+                                    <Text style={{color: 'white'}}>￥{this.props.navigation.state.params.item.price}</Text>
                                 </View>
-                                <TouchableWithoutFeedback
-                                    onPress={() => {
-                                        Linking.openURL('tel:13812345678');
-                                    }}>
-                                    <Text>详情【立即咨询】卖家</Text>
-                                </TouchableWithoutFeedback>
-                            </View>
+                                
+                            </View> */}
                         </View>
                     </View>
 
                     <View style={{height: 10, backgroundColor: '#ebebeb'}} />
 
                     <WebView
-                        source={{uri: 'http://m.baidu.com/'}}
+                        source={{uri: this.props.navigation.state.params.item.url }}
                         // injectedJavaScript={
                         //     'document.getElementsByClassName("crumbs")[0].remove();' +
                         //     'document.getElementsByClassName("nav clearfix")[0].remove();' +
@@ -144,12 +140,12 @@ export default class Productpage extends Component {
                         //     'document.getElementsByClassName("list-slidenav")[0].remove();' +
                         //     'document.getElementsByClassName("footer")[0].remove();'
                         // }
-                        style={{height: 500}}
+                        style={{height: 4120}}
                     />
                 </ScrollView>
                 <View style={{flexDirection: 'row'}}>
                     <View style={{width: width / 2}}>
-                        <Button onPress={() => this.addfocus()} title="关注该车" color="#ff4d00" />
+                        <Button onPress={() => this.addfocus()} title="关注商品" color="#ff4d00" />
                     </View>
 
                     <View style={{width: width / 2}}>
@@ -200,7 +196,7 @@ const styles = StyleSheet.create({
         height: 21,
     },
     swiperview: {
-        height: 150,
+        height: 500,
     },
     swiperview2: {
         height: 20,
