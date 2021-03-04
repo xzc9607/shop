@@ -39,7 +39,7 @@ export default class Detailswipercompoment extends Component {
                         resizeMode="cover"
                         style={{width: this.width, height: 500}}
                         // eslint-disable-next-line no-undef
-                        source={{uri: gUrl.productimgurl + 'productimg/' + Math.floor(Math.random() * 10) + '.jpg'}}
+                        //source={{uri: gUrl.productimgurl + 'productimg/' + Math.floor(Math.random() * 10) + '.jpg'}}
                         source={require('./../../../static/img/detail2.jpg')}
                     />
                 </View>

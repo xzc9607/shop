@@ -90,62 +90,29 @@ export default class Productpage extends Component {
 
                     <View style={{height: 50, backgroundColor: 'red', justifyContent: 'center'}}>
                         <Text style={{fontSize: 25, color: 'white', marginStart: 20}}>
-                        ￥{this.props.navigation.state.params.item.price}
+                            ￥{this.props.navigation.state.params.item.price}
                         </Text>
                     </View>
                     <View style={{alignItems: 'center'}}>
                         <View style={{height: 80, width: width - 40, marginTop: 20}}>
                             <View>
                                 <Text style={{fontSize: 30, color: 'black'}}>
-                                {this.props.navigation.state.params.item.productname}
+                                    {this.props.navigation.state.params.item.productname}
                                 </Text>
                             </View>
-                            <View style={{marginTop: 5,marginLeft:220}}>
+                            <View style={{marginTop: 5, marginLeft: 220}}>
                                 <Text>剩余数量：{this.props.navigation.state.params.item.quantity}</Text>
                             </View>
-                            {/* <View style={{alignItems: 'flex-end'}}>
-                                <View
-                                    style={{
-                                        height: 20,
-                                        width: 200,
-                                        backgroundColor: 'red',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                    }}>
-                                    <Text style={{color: 'white'}}>服务费2888，砍0元开新车</Text>
-                                </View>
-                                <View style={{alignItems: 'flex-end'}}>
-                                    <Text style={{}}>已售1台</Text>
-                                </View>
-                            </View> */}
-                            {/* <View style={{height: 1, backgroundColor: '#ebebeb'}} />
-                            <View style={{flexDirection: 'row', height: 50, alignItems: 'center'}}>
-                                <View style={styles.listhead}>
-                                    <Text style={{color: 'white'}}>￥{this.props.navigation.state.params.item.price}</Text>
-                                </View>
-                                
-                            </View> */}
                         </View>
                     </View>
 
                     <View style={{height: 10, backgroundColor: '#ebebeb'}} />
 
-                    <WebView
-                        source={{uri: this.props.navigation.state.params.item.url }}
-                        // injectedJavaScript={
-                        //     'document.getElementsByClassName("crumbs")[0].remove();' +
-                        //     'document.getElementsByClassName("nav clearfix")[0].remove();' +
-                        //     'document.getElementsByClassName("cartype-name")[0].remove();' +
-                        //     'document.getElementsByClassName("fixed-vs")[0].remove();' +
-                        //     'document.getElementsByClassName("list-slidenav")[0].remove();' +
-                        //     'document.getElementsByClassName("footer")[0].remove();'
-                        // }
-                        style={{height: 4120}}
-                    />
+                    <WebView source={{uri: 'http://81.70.32.108:3000/webs/detail.html'}} style={{height: 4130}} />
                 </ScrollView>
                 <View style={{flexDirection: 'row'}}>
                     <View style={{width: width / 2}}>
-                        <Button onPress={() => this.addfocus()} title="关注商品" color="#ff4d00" />
+                        <Button onPress={() => this.addfocus()} title="关注该车" color="#ff4d00" />
                     </View>
 
                     <View style={{width: width / 2}}>
@@ -196,7 +163,7 @@ const styles = StyleSheet.create({
         height: 21,
     },
     swiperview: {
-        height: 500,
+        height: 350,
     },
     swiperview2: {
         height: 20,
