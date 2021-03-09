@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import {Button, Dimensions, Image, ScrollView, StyleSheet, Switch, Text, View, Alert} from 'react-native';
+import {Button, Dimensions, Image, ScrollView, StyleSheet, Text, View, Alert, TouchableHighlight} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Indexheader from '../components/indexheader';
+import Icon from 'react-native-vector-icons/AntDesign';
 // eslint-disable-next-line no-unused-vars
 import Global from '../Global';
+import {TextInput} from 'react-native-gesture-handler';
 
 const {width} = Dimensions.get('window'); //获取当前屏幕宽度
 
@@ -16,10 +18,12 @@ export default class Purchase extends Component {
             falseSwitchIsOn1: false,
             trueSwitchIsOn2: true,
             falseSwitchIsOn2: false,
+            quantity: '1',
+            style: 'red',
             username: '',
             uid: null,
+            access: '',
         };
-
         AsyncStorage.getItem('user', function (error, result) {
             if (error) {
                 Alert.alert('读取失败');
@@ -27,6 +31,7 @@ export default class Purchase extends Component {
             }
         }).then((result) => {
             this.setState({username: result});
+            console.log(result);
         });
         AsyncStorage.getItem('uid', function (error, result) {
             if (error) {
@@ -36,10 +41,15 @@ export default class Purchase extends Component {
         }).then((result) => {
             this.setState({uid: result});
         });
+        AsyncStorage.getAllKeys(function (error, keys) {
+            keys.map((keyName, i) => {
+                console.log(`key is ${keyName}`);
+            });
+        });
     }
 
     static navigationOptions = {
-        header: null,
+        headerShown: false,
     };
 
     add() {
@@ -75,21 +85,22 @@ export default class Purchase extends Component {
             <View style={{flex: 1, backgroundColor: 'white'}}>
                 <Indexheader />
                 <ScrollView style={{backgroundColor: 'white'}}>
-                    <View style={{height: 50, flexDirection: 'row'}}>
-                        <View style={{width: (2 * width) / 5, justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{height: 3, backgroundColor: '#ebebeb'}} />
+                    <View style={{height: 60, flexDirection: 'row'}}>
+                        <View style={{width: width / 8, justifyContent: 'center', alignItems: 'center'}}>
                             <View style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
-                                <Text style={{fontSize: 17}}>联系电话:</Text>
-                                <Text style={{color: 'red'}}>*</Text>
+                                <Icon name="home" size={25} color="red" />
                             </View>
                         </View>
 
-                        <View style={{width: (3 * width) / 5, justifyContent: 'center', alignItems: 'center'}}>
-                            <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                                <Text style={{fontSize: 17, color: 'black'}}>13333333333</Text>
+                        <View style={{width: width, justifyContent: 'center'}}>
+                            <View>
+                                <Text style={{fontSize: 17}}>向子忱 18269890607</Text>
+                                <Text style={{fontSize: 17, color: 'black'}}>浙江省湖州市吴兴区</Text>
                             </View>
                         </View>
                     </View>
-
+                    <View style={{height: 3, backgroundColor: '#ebebeb'}} />
                     <View style={{backgroundColor: 'white'}}>
                         <View style={styles.listtext}>
                             <View style={{width: (2 * width) / 5, justifyContent: 'center', alignItems: 'center'}}>
@@ -100,54 +111,73 @@ export default class Purchase extends Component {
                                 />
                             </View>
                             <View style={styles.listbody}>
-                                <View style={{width: (3 * width) / 5, marginStart: 20}}>
-                                    <Text style={{color: 'black', fontSize: 19}}>
-                                        {this.props.navigation.state.params.productname}
+                                <View style={{width: (3 * width) / 5}}>
+                                    <Text style={{color: 'black', fontSize: 22}}>
+                                        {this.props.navigation.state.params.item.productname}
                                     </Text>
-                                    <Text style={{color: 'black', fontSize: 19}}>
-                                        {this.props.navigation.state.params.kind}
+                                    <Text style={{color: 'gray', fontSize: 15}}>
+                                        类别:{this.props.navigation.state.params.item.kind}
                                     </Text>
-                                    <Text>{this.props.navigation.state.params.price}</Text>
-                                    <Text style={{color: '#FF2d16'}}>首付0元 月供6000元</Text>
+                                    <View style={{height: 50}} />
+                                    <Text style={{color: '#FF2d16', fontSize: 15}}>
+                                        ￥{this.props.navigation.state.params.item.price}/件
+                                    </Text>
                                 </View>
                             </View>
                         </View>
                     </View>
-
-                    <View style={{height: 50, flexDirection: 'row'}}>
-                        <View style={{width: width / 2, justifyContent: 'center', alignItems: 'center'}}>
-                            <View style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
-                                <Text style={{fontSize: 17}}>接受通知？(短信/电话)</Text>
-                            </View>
-                        </View>
-
-                        <View style={{width: width / 2, justifyContent: 'center', alignItems: 'center'}}>
-                            <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                                <Switch
-                                    onValueChange={(value) => this.setState({falseSwitchIsOn1: value})}
-                                    style={{marginBottom: 10, marginTop: 10}}
-                                    value={this.state.falseSwitchIsOn1}
+                    <View style={{height: 3, backgroundColor: '#ebebeb'}} />
+                    <View
+                        style={{
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: 50,
+                            flexDirection: 'row',
+                        }}>
+                        <View
+                            style={{
+                                width: (width / 10) * 9.3,
+                            }}>
+                            <View style={{alignItems: 'center', flexDirection: 'row'}}>
+                                <Text style={{fontSize: 17}}>购买数量</Text>
+                                <View style={{width: 10}} />
+                                <TextInput
+                                    style={{
+                                        height: 40,
+                                        width: 40,
+                                        borderColor: 'gray',
+                                        borderWidth: 1,
+                                    }}
+                                    value={this.state.quantity}
                                 />
                             </View>
                         </View>
                     </View>
-
-                    <View style={{height: 50, flexDirection: 'row'}}>
-                        <View style={{width: width / 2, justifyContent: 'center', alignItems: 'center'}}>
-                            <View style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
-                                <Text style={{fontSize: 17}}>到店付款？</Text>
-                            </View>
+                    <View style={{height: 3, backgroundColor: '#ebebeb'}} />
+                    <View style={{height: 200}}>
+                        <View
+                            style={{
+                                height: 50,
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                marginLeft: 10,
+                            }}>
+                            <Icon name="wechat" size={25} color="#04BE02" />
+                            <Text>微信支付</Text>
                         </View>
-
-                        <View style={{width: width / 2, justifyContent: 'center', alignItems: 'center'}}>
-                            <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                                <Switch
-                                    onValueChange={(value) => this.setState({falseSwitchIsOn2: value})}
-                                    style={{marginBottom: 10, marginTop: 10}}
-                                    value={this.state.falseSwitchIsOn2}
-                                />
+                        <View style={{height: 1, backgroundColor: '#ebebeb'}} />
+                        <TouchableHighlight>
+                            <View
+                                style={{
+                                    height: 50,
+                                    flexDirection: 'row',
+                                    alignItems: 'center',
+                                    marginLeft: 10,
+                                }}>
+                                <Icon name="alipay-circle" size={25} color="#027AFF" />
+                                <Text>支付宝</Text>
                             </View>
-                        </View>
+                        </TouchableHighlight>
                     </View>
                 </ScrollView>
                 <View>
@@ -256,5 +286,17 @@ const styles = StyleSheet.create({
         height: 120,
         width: width / 3,
         resizeMode: 'contain',
+    },
+    touchButton: {
+        height: 40,
+        width: 100,
+        borderRadius: 20,
+        backgroundColor: '#fa1faa',
+        justifyContent: 'center',
+        overflow: 'hidden',
+    },
+    touchButtonText: {
+        color: 'white',
+        textAlign: 'center',
     },
 });
