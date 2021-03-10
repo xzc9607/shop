@@ -19,10 +19,16 @@ export default class Purchase extends Component {
             trueSwitchIsOn2: true,
             falseSwitchIsOn2: false,
             quantity: '1',
-            style: 'red',
             username: '',
             uid: null,
-            access: '',
+            address: '',
+            phone: '',
+        };
+        this.data = {
+            username: '',
+            uid: null,
+            address: '',
+            phone: '',
         };
         AsyncStorage.getItem('user', function (error, result) {
             if (error) {
@@ -31,7 +37,8 @@ export default class Purchase extends Component {
             }
         }).then((result) => {
             this.setState({username: result});
-            console.log(result);
+            this.data.username = result;
+            //console.log(result);
         });
         AsyncStorage.getItem('uid', function (error, result) {
             if (error) {
@@ -40,39 +47,56 @@ export default class Purchase extends Component {
             }
         }).then((result) => {
             this.setState({uid: result});
+            this.data.uid = result;
+            //console.log(this.state.uid);
+            // eslint-disable-next-line no-undef
+            fetch(gUrl.httpurl + '/users/getUserById?uid=' + this.state.uid)
+                .then((responses) => responses.json())
+                .then((res) => {
+                    var temp = JSON.parse(JSON.stringify(res.list));
+                    this.setState({phone: temp[0].phone});
+                    this.data.phone = temp[0].phone;
+                    this.setState({address: temp[0].address});
+                    this.data.address = temp[0].address;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         });
-        AsyncStorage.getAllKeys(function (error, keys) {
-            keys.map((keyName, i) => {
-                console.log(`key is ${keyName}`);
-            });
-        });
+        //console.log(this.state.uid);
     }
 
     static navigationOptions = {
         headerShown: false,
     };
 
-    add() {
+    addorder() {
         let formData = {
-            uid: this.state.userid,
-            pid: this.props.navigation.state.params[0].id,
+            uid: this.data.uid,
+            pid: this.props.navigation.state.params.item.pid,
+            address: this.state.address,
+            name: this.state.username,
+            phone: this.state.phone,
         };
+        console.log(this.data);
         // eslint-disable-next-line no-undef
-        fetch(gUrl.httpurl + '/addorder', {
+        fetch(gUrl.httpurl + '/orders/addorder', {
             method: 'POST', //请求方法
             mode: 'cors',
             body: JSON.stringify(formData), //请求体
             headers: {
-                Accept: 'application/json',
+                // eslint-disable-next-line prettier/prettier
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
         })
+            .then((responses) => responses.json())
             .then((res) => {
+                console.log(res);
                 //res = JSON.parse(response._bodyText);
-                if (res.code === 201) {
-                    Alert.alert('提交成功');
+                if (res.affectedRows === 1) {
+                    Alert.alert('购买成功');
                 } else {
-                    Alert.alert(res.msg);
                 }
             })
             .catch((error) => {
@@ -95,8 +119,10 @@ export default class Purchase extends Component {
 
                         <View style={{width: width, justifyContent: 'center'}}>
                             <View>
-                                <Text style={{fontSize: 17}}>向子忱 18269890607</Text>
-                                <Text style={{fontSize: 17, color: 'black'}}>浙江省湖州市吴兴区</Text>
+                                <Text style={{fontSize: 17}}>
+                                    {this.state.username} {this.state.phone}
+                                </Text>
+                                <Text style={{fontSize: 17, color: 'black'}}>{this.state.address}</Text>
                             </View>
                         </View>
                     </View>
@@ -181,7 +207,7 @@ export default class Purchase extends Component {
                     </View>
                 </ScrollView>
                 <View>
-                    <Button onPress={() => this.add()} title="提交订单" color="red" />
+                    <Button onPress={() => this.addorder()} title="提交订单" color="red" />
                 </View>
             </View>
         );

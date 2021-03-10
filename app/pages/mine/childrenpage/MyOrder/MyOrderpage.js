@@ -87,11 +87,9 @@ export default class myOrder extends Component {
                             <View style={{width: width / 3}}>
                                 <Text>{item.productname}</Text>
                                 <View style={{height: 3}} />
-                                <Text>首付:5000元</Text>
+                                <Text>数量:1</Text>
                                 <View style={{height: 3}} />
-                                <Text>月供:5000元</Text>
-                                <View style={{height: 3}} />
-                                <Text>期数:36期</Text>
+                                <Text>总价:5000元</Text>
                             </View>
                             <View style={{width: width / 3, justifyContent: 'center', alignItems: 'center'}}>
                                 <View
@@ -103,7 +101,7 @@ export default class myOrder extends Component {
                                         justifyContent: 'center',
                                         alignItems: 'center',
                                     }}>
-                                    <Text style={{color: 'white'}}>分享砍价</Text>
+                                    <Text style={{color: 'white'}}>订单详情</Text>
                                 </View>
                                 <View style={{height: 10}} />
                                 <View
@@ -115,7 +113,7 @@ export default class myOrder extends Component {
                                         justifyContent: 'center',
                                         alignItems: 'center',
                                     }}>
-                                    <Text style={{color: 'white'}}>完善信息</Text>
+                                    <Text style={{color: 'white'}}>商品售后</Text>
                                 </View>
                             </View>
                         </View>
